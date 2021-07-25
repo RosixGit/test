@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: 'iconfont';
+            /* Project id 2699087 */
+            src: url('//at.alicdn.com/t/font_2699087_e3zkjqbijzp.woff2?t=1627225685299') format('woff2'),
+                url('//at.alicdn.com/t/font_2699087_e3zkjqbijzp.woff?t=1627225685299') format('woff'),
+                url('//at.alicdn.com/t/font_2699087_e3zkjqbijzp.ttf?t=1627225685299') format('truetype');
+        }
+
+        body {
+            background: #909399;
+            margin: 0;
+            padding: 0;
+        }
+
+        .row {
+            background: #ffffff;
+            width: 100%;
+            height: 50px;
+            /* line-height: 150px; */
+            text-align: center;
+            /* margin: 15px 0; */
+            border-bottom: 1px solid #909399;
+        }
+
+        .left {
+            float: left;
+            /* height:50px; */
+            margin-top: 10px;
+            margin-left: 10px;
+            line-height: 30px;
+            background-color: #9093994d;
+            width: 30px;
+            border-radius: 50%;
+            /* */
+
+        }
+
+        .text {
+            line-height: 50px;
+            margin-left: 10px;
+            float: left;
+        }
+
+        .sortable-chosen {
+            background: #409EFF;
+            border-bottom: 1px solid #409EFF;
+            box-shadow:
+                0 0 0 0 blue,
+                0 -6px 3px rgba(78, 77, 77, 0.26),
+                0 6px 3px  rgba(78, 77, 77, 0.26),
+                0 0 0 0 blue;
+        }
+
+        .sortable-chosen .left {
+            background-color: #ffffff;
+            color: #409EFF;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="box">
+            <draggable v-model="list" animation="500" @end="dragEnd">
+                <div class="row" v-for="(item,index) in list" :key="index">
+                    <div class="left">{{index}}</div>
+                    <div class="text">选项{{item}}</div>
+                </div>
+            </draggable>
+        </div>
+    </div>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.min.js"></script>
+    <script src="http://www.itxst.com/package/vue/vue.min.js"></script>
+    <script src="http://www.itxst.com/package/sortable/Sortable.min.js"></script>
+    <script src="http://www.itxst.com/package/vuedraggable/vuedraggable.umd.min.js"></script>
+    <script>
+        // import draggable from 'vuedraggable'
+        Vue.component('vuedraggable', window.vuedraggable)
+        const app = new Vue({
+            el: "#app",
+            data() {
+                return {
+                    list: ["A", "B", "C", "D"]
+                };
+            },
+            methods: {
+                dragEnd() {
+                    console.log(this.list);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
